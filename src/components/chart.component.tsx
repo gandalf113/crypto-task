@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react'
 import { Line } from 'react-chartjs-2'
 import {
     Chart as ChartJS, LineController, Tooltip, CategoryScale, LineElement, PointElement,
-    LinearScale, Title
+    LinearScale, Title, ChartData
 } from 'chart.js';
-import { ChartData } from '../utils/types';
+// import { ChartData } from '../utils/types';
 
 type Props = {
-    data: ChartData;
+    data: ChartData<'line'>;
     vsCurrency: string;
 }
 

@@ -4,7 +4,8 @@ import { CoinSelectorContext } from '../context/coin-selector-context';
 import { SettingsContext, SettingsContextType } from '../context/settings-context';
 import { getCoinMarketChart, getCurrentCoinPrices } from '../utils/currency-utils';
 import { getDistinctColor, getTimestamps } from '../utils/general-utils';
-import { ChartData, CoinPrices, MarketChartPoint } from '../utils/types';
+import { CoinPrices, MarketChartPoint } from '../utils/types';
+import {ChartData} from 'chart.js'
 import CoinTag from './coin-tag.component';
 
 /**
@@ -41,14 +42,15 @@ const MainView = () => {
 
 
     // Data that will be displayed on the chart
-    const data = useMemo<ChartData>(() => ({
+    const data = useMemo<ChartData<'line'>>(() => ({
         labels: getTimestamps(marketData),
         datasets: marketData.map((coinData, index) => (
             {
                 data: coinData.map((point: MarketChartPoint) => ({ x: point.timestamp, y: point.price })),
                 borderColor: getDistinctColor(index),
                 hoverRadius: 4,
-                hoverBorderWidth: 5
+                hoverBorderWidth: 5,
+                label: selectedCoins[index].name,
             }
         ))
     }), [marketData])
