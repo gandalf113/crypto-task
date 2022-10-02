@@ -10,6 +10,9 @@ import CoinTag from './coin-tag.component';
 import useData from '../hooks/use-data';
 import useModal from '../hooks/use-modal';
 import SettingsModal from './modals/settings.component';
+import BrowseCoinsModal from './modals/browse-coins.component';
+import { SAMPLE_COINS } from '../utils/test-utils';
+
 
 /**
  * Main view in the application. It shows the chart and current
@@ -47,7 +50,7 @@ const MainView = () => {
     return (
         <Fragment>
             {settingsModalIsOpen && <SettingsModal handleClose={closeSettingsModal} />}
-            {browseCoinsModal && <SettingsModal handleClose={closeBrowseCurrenciesModal} />}
+            {browseCoinsModal && <BrowseCoinsModal handleClose={closeBrowseCurrenciesModal} coins={SAMPLE_COINS} />}
 
             <div className='flex items-stretch justify-between gap-x-10 mb-4'>
                 {/* Heading */}
