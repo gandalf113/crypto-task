@@ -9,6 +9,7 @@ const Sidebar = () => {
 
     const [coins, isLoading] = useHttp('https://api.coingecko.com/api/v3/coins/markets?vs_currency=pln') as [Array<Coin>, boolean];
 
+    // filteredCoins are coins after applying search query
     const [filteredCoins, setFilteredCoins] = useState<Array<Coin>>([]);
     const [query, setQuery] = useState("");
 
