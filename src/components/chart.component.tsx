@@ -3,7 +3,6 @@ import {
     Chart as ChartJS, LineController, Tooltip, CategoryScale, LineElement, PointElement,
     LinearScale, Title, ChartData
 } from 'chart.js';
-// import { ChartData } from '../utils/types';
 
 type Props = {
     data: ChartData<'line'>;
