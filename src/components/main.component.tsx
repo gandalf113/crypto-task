@@ -5,8 +5,9 @@ import { SettingsContext, SettingsContextType } from '../context/settings-contex
 import { getCoinMarketChart, getCurrentCoinPrices } from '../utils/currency-utils';
 import { getDistinctColor, getTimestamps } from '../utils/general-utils';
 import { CoinPrices, MarketChartPoint } from '../utils/types';
-import {ChartData} from 'chart.js'
+import { ChartData } from 'chart.js'
 import CoinTag from './coin-tag.component';
+import useData from '../hooks/use-data';
 
 /**
  * Main view in the application. It shows the chart and current
@@ -42,21 +43,10 @@ const MainView = () => {
 
 
     // Data that will be displayed on the chart
-    const data = useMemo<ChartData<'line'>>(() => ({
-        labels: getTimestamps(marketData),
-        datasets: marketData.map((coinData, index) => (
-            {
-                data: coinData.map((point: MarketChartPoint) => ({ x: point.timestamp, y: point.price })),
-                borderColor: getDistinctColor(index),
-                hoverRadius: 4,
-                hoverBorderWidth: 5,
-                label: selectedCoins[index].name,
-            }
-        ))
-    }), [marketData])
+    const data = useData(marketData, selectedCoins);
 
-    const openSettingsModal = () => {};
-    const openBrowseCurrenciesModal = () => {};
+    const openSettingsModal = () => { };
+    const openBrowseCurrenciesModal = () => { };
 
     return (
         <div>
