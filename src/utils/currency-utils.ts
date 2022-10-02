@@ -5,7 +5,7 @@ import { Coin, MarketChartPoint } from "./types";
  * Returns an array of points containing the coin
  * price at a given timestamp (in ms since epoch)
  */
-export const getCoinMarketChart = async (coin_id: number, vs_currency: string, decimation: number): Promise<Array<MarketChartPoint>> => {
+export const getCoinMarketChart = async (coin_id: string, vs_currency: string, decimation: number): Promise<Array<MarketChartPoint>> => {
     const res = await fetch(`https://api.coingecko.com/api/v3/coins/${coin_id}/market_chart?id=${coin_id}&vs_currency=${vs_currency}&days=1`);
     const data = await res.json();
 

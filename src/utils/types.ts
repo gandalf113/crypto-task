@@ -10,3 +10,9 @@ export type MarketChartPoint = {
     timestamp: number,
     price: number
 }
+
+export type CoinPrices = {
+    [coinId: string]: {
+        [currency: string]: number
+    }
+}

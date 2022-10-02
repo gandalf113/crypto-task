@@ -1,11 +1,11 @@
 import React, { createContext, Dispatch, SetStateAction, useState } from "react";
 
 
-type SettingsContextType = {
+export type SettingsContextType = {
     vsCurrency: string,
-    setVsCurrency: Dispatch<SetStateAction<string>>,
+    setVsCurrency?: Dispatch<SetStateAction<string>>,
     decimation: number,
-    setDecimation: Dispatch<SetStateAction<number>>
+    setDecimation?: Dispatch<SetStateAction<number>>
 }
 
 const initialState = {
@@ -13,7 +13,10 @@ const initialState = {
     decimation: 2,
 }
 
-export const SettingsContext = createContext<SettingsContextType | null>(null);
+export const SettingsContext = createContext<SettingsContextType>({
+    vsCurrency: initialState.vs_currency,
+    decimation: initialState.decimation
+});
 
 const SettingsProvider = ({ children }: { children: React.ReactNode }) => {
     const [vsCurrency, setVsCurrency] = useState(initialState.vs_currency);
