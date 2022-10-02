@@ -1,9 +1,29 @@
-import React, { useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { getDistinctColor, getTimestamps } from '../utils/general-utils';
 import { Coin, MarketChartPoint } from '../utils/types';
 import { ChartData } from 'chart.js';
+import { getCoinMarketChart } from '../utils/currency-utils';
 
-const useData = (marketData: MarketChartPoint[][], selectedCoins: Coin[]) => {
+const useData = (selectedCoins: Coin[], vsCurrency: string, decimation: number) => {
+    const [marketData, setMarketData] = useState<MarketChartPoint[][]>([]); // Chart Y axis (all coins)
+
+    useEffect(() => {
+        /**
+         * Get and set 24 hour market data for every selected coin
+         */
+        const getMarketDataForEveryCoin = async () => {
+            const updatedMarketData = []
+            for (const coin of selectedCoins) {
+                const coinData = await getCoinMarketChart(coin.id, vsCurrency, decimation);
+                updatedMarketData.push(coinData);
+            }
+            setMarketData(updatedMarketData);
+        }
+
+        getMarketDataForEveryCoin();
+
+    }, [selectedCoins, vsCurrency, decimation]);
+
     const data = useMemo<ChartData<'line'>>(() => ({
         labels: getTimestamps(marketData),
         datasets: marketData.map((coinData, index) => (

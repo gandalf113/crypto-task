@@ -18,32 +18,19 @@ const MainView = () => {
     const { vsCurrency, decimation } = useContext<SettingsContextType>(SettingsContext);
 
     const { selectedCoins, toggleCoinSelection } = useContext(CoinSelectorContext);
-    const [marketData, setMarketData] = useState<MarketChartPoint[][]>([]); // Chart Y axis (all coins)
 
     const [coinPrices, setCoinPrices] = useState<CoinPrices>({}); // Current coin prices
 
+    /**
+     * Get current coin prices for selected coins
+     */
     useEffect(() => {
-        /**
-         * Get and set 24 hour market data for every selected coin
-         */
-        const getMarketDataForEveryCoin = async () => {
-            const updatedMarketData = []
-            for (const coin of selectedCoins) {
-                const coinData = await getCoinMarketChart(coin.id, vsCurrency, decimation);
-                updatedMarketData.push(coinData);
-            }
-            setMarketData(updatedMarketData);
-        }
-
-        getMarketDataForEveryCoin();
-
         getCurrentCoinPrices(selectedCoins).then(prices => setCoinPrices(prices));
-
-    }, [selectedCoins, vsCurrency, decimation]);
+    }, [selectedCoins]);
 
 
     // Data that will be displayed on the chart
-    const data = useData(marketData, selectedCoins);
+    const data = useData(selectedCoins, vsCurrency, decimation);
 
     const openSettingsModal = () => { };
     const openBrowseCurrenciesModal = () => { };
