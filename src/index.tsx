@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import CoinSelectionProvider from './context/coin-selector-context';
+import SettingsProvider from './context/settings-context';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -11,7 +12,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <CoinSelectionProvider>
-      <App />
+      <SettingsProvider>
+        <App />
+      </SettingsProvider>
     </CoinSelectionProvider>
   </React.StrictMode>
 );

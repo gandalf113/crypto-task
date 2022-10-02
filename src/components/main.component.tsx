@@ -1,4 +1,4 @@
-import { useContext, useEffect, useMemo, useState } from 'react';
+import { Fragment, useContext, useEffect, useState } from 'react';
 import Chart from './chart.component';
 import { CoinSelectorContext } from '../context/coin-selector-context';
 import { SettingsContext, SettingsContextType } from '../context/settings-context';
@@ -8,18 +8,24 @@ import { CoinPrices, MarketChartPoint } from '../utils/types';
 import { ChartData } from 'chart.js'
 import CoinTag from './coin-tag.component';
 import useData from '../hooks/use-data';
+import useModal from '../hooks/use-modal';
+import SettingsModal from './modals/settings.component';
 
 /**
  * Main view in the application. It shows the chart and current
  * prices of user selected coins.
  */
 const MainView = () => {
-    // const { modals, toggleModal } = useContext(UIContext);
-    const { vsCurrency, decimation } = useContext<SettingsContextType>(SettingsContext);
-
+    // Global context
     const { selectedCoins, toggleCoinSelection } = useContext(CoinSelectorContext);
+    const { vsCurrency, decimation } = useContext(SettingsContext);
 
-    const [coinPrices, setCoinPrices] = useState<CoinPrices>({}); // Current coin prices
+    // Current coin prices
+    const [coinPrices, setCoinPrices] = useState<CoinPrices>({});
+
+    // Modals
+    const [settingsModalIsOpen, toggleSettingsModal] = useModal();
+    const [browseCoinsModal, toggleBrowseCoinsModal] = useModal();
 
     /**
      * Get current coin prices for selected coins
@@ -32,11 +38,17 @@ const MainView = () => {
     // Data that will be displayed on the chart
     const data = useData(selectedCoins, vsCurrency, decimation);
 
-    const openSettingsModal = () => { };
-    const openBrowseCurrenciesModal = () => { };
+    const openSettingsModal = () => toggleSettingsModal(true);
+    const closeSettingsModal = () => toggleSettingsModal(false);
+
+    const openBrowseCurrenciesModal = () => toggleBrowseCoinsModal(true);
+    const closeBrowseCurrenciesModal = () => toggleBrowseCoinsModal(false);
 
     return (
-        <div>
+        <Fragment>
+            {settingsModalIsOpen && <SettingsModal handleClose={closeSettingsModal} />}
+            {browseCoinsModal && <SettingsModal handleClose={closeBrowseCurrenciesModal} />}
+
             <div className='flex items-stretch justify-between gap-x-10 mb-4'>
                 {/* Heading */}
                 <h1 className='text-zinc-300'>Coin prices for past 24 hours</h1>
@@ -93,7 +105,7 @@ const MainView = () => {
                     </div>
                 ))}
             </div>
-        </div>
+        </Fragment>
     )
 }
 
