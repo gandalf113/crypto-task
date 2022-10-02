@@ -1,18 +1,15 @@
 import { Fragment, useContext, useEffect, useState } from 'react';
 import Chart from './chart.component';
 import { CoinSelectorContext } from '../context/coin-selector-context';
-import { SettingsContext, SettingsContextType } from '../context/settings-context';
-import { getCoinMarketChart, getCurrentCoinPrices } from '../utils/currency-utils';
-import { getDistinctColor, getTimestamps } from '../utils/general-utils';
-import { CoinPrices, MarketChartPoint } from '../utils/types';
-import { ChartData } from 'chart.js'
+import { SettingsContext, } from '../context/settings-context';
+import { getCurrentCoinPrices } from '../utils/currency-utils';
+import { getDistinctColor } from '../utils/general-utils';
+import { CoinPrices } from '../utils/types';
 import CoinTag from './coin-tag.component';
 import useData from '../hooks/use-data';
 import useModal from '../hooks/use-modal';
 import SettingsModal from './modals/settings.component';
 import BrowseCoinsModal from './modals/browse-coins.component';
-import { SAMPLE_COINS } from '../utils/test-utils';
-
 
 /**
  * Main view in the application. It shows the chart and current
@@ -50,7 +47,7 @@ const MainView = () => {
     return (
         <Fragment>
             {settingsModalIsOpen && <SettingsModal handleClose={closeSettingsModal} />}
-            {browseCoinsModal && <BrowseCoinsModal handleClose={closeBrowseCurrenciesModal} coins={SAMPLE_COINS} />}
+            {browseCoinsModal && <BrowseCoinsModal handleClose={closeBrowseCurrenciesModal} />}
 
             <div className='flex items-stretch justify-between gap-x-10 mb-4'>
                 {/* Heading */}

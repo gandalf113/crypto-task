@@ -1,4 +1,3 @@
-import React from 'react'
 import { Coin } from '../utils/types'
 
 type Props = {

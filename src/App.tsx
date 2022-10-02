@@ -7,7 +7,7 @@ const App = () => {
 
   return (
     <div>
-      <Sidebar coins={SAMPLE_COINS} />
+      <Sidebar />
 
       <main className='lg:absolute lg:w-3/4 right-0 p-8'>
         <MainView />
