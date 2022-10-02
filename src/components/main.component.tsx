@@ -1,10 +1,10 @@
 import { useContext, useEffect, useMemo, useState } from 'react';
-// import Chart from './chart.component';
+import Chart from './chart.component';
 import { CoinSelectorContext } from '../context/coin-selector-context';
 import { SettingsContext, SettingsContextType } from '../context/settings-context';
 import { getCoinMarketChart, getCurrentCoinPrices } from '../utils/currency-utils';
 import { getDistinctColor, getTimestamps } from '../utils/general-utils';
-import { CoinPrices, MarketChartPoint } from '../utils/types';
+import { ChartData, CoinPrices, MarketChartPoint } from '../utils/types';
 import CoinTag from './coin-tag.component';
 
 /**
@@ -41,7 +41,7 @@ const MainView = () => {
 
 
     // Data that will be displayed on the chart
-    const data = useMemo(() => ({
+    const data = useMemo<ChartData>(() => ({
         labels: getTimestamps(marketData),
         datasets: marketData.map((coinData, index) => (
             {
@@ -89,7 +89,7 @@ const MainView = () => {
             </div>
 
             {/* The chart */}
-            {/* <Chart data={data} vsCurrency={vsCurrency} data-testid='chart' /> */}
+            <Chart data={data} vsCurrency={vsCurrency} data-testid='chart' />
 
             {/* Selected currencies with distinct colors */}
             <div className='flex flex-wrap items-center gap-2 mt-6 select-none'>

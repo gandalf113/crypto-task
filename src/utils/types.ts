@@ -16,3 +16,16 @@ export type CoinPrices = {
         [currency: string]: number
     }
 }
+
+export type ChartData = {
+    labels: string[];
+    datasets: {
+        data: {
+            x: number;
+            y: number;
+        }[];
+        borderColor: string;
+        hoverRadius: number;
+        hoverBorderWidth: number;
+    }[];
+}
