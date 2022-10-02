@@ -1,3 +1,5 @@
+import { Coin } from "./types";
+
 export const SAMPLE_MARKET_DATA = [
     [
         { price: 6599.666941355377, timestamp: 1664395315279 },
@@ -65,34 +67,13 @@ export const SAMPLE_MARKET_DATA = [
     ]
 ];
 
-export const SAMPLE_COINS = [
+export const SAMPLE_COINS: Array<Coin> = [
     {
         "id": "bitcoin",
         "symbol": "btc",
         "name": "Bitcoin",
         "image": "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579",
         "current_price": 96250,
-        "market_cap": 1842911540973,
-        "market_cap_rank": 1,
-        "fully_diluted_valuation": 2019458571505,
-        "total_volume": 185181214909,
-        "high_24h": 97976,
-        "low_24h": 94634,
-        "price_change_24h": -524.4184580893925,
-        "price_change_percentage_24h": -0.5419,
-        "market_cap_change_24h": -10460710797.668213,
-        "market_cap_change_percentage_24h": -0.56441,
-        "circulating_supply": 19164118.0,
-        "total_supply": 21000000.0,
-        "max_supply": 21000000.0,
-        "ath": 275506,
-        "ath_change_percentage": -65.0845,
-        "ath_date": "2021-11-10T14:24:11.849Z",
-        "atl": 220.11,
-        "atl_change_percentage": 43602.51107,
-        "atl_date": "2013-07-05T00:00:00.000Z",
-        "roi": null,
-        "last_updated": "2022-09-29T20:25:21.950Z"
     },
     {
         "id": "ethereum",
@@ -100,58 +81,12 @@ export const SAMPLE_COINS = [
         "name": "Ethereum",
         "image": "https://assets.coingecko.com/coins/images/279/large/ethereum.png?1595348880",
         "current_price": 6617.99,
-        "market_cap": 798214740603,
-        "market_cap_rank": 2,
-        "fully_diluted_valuation": null,
-        "total_volume": 60826811460,
-        "high_24h": 6709.72,
-        "low_24h": 6462.57,
-        "price_change_24h": -30.610650469900975,
-        "price_change_percentage_24h": -0.46041,
-        "market_cap_change_24h": -4605497726.486572,
-        "market_cap_change_percentage_24h": -0.57366,
-        "circulating_supply": 120736444.871192,
-        "total_supply": 120735926.871192,
-        "max_supply": null,
-        "ath": 19645.56,
-        "ath_change_percentage": -66.34753,
-        "ath_date": "2021-12-01T08:38:24.623Z",
-        "atl": 1.62,
-        "atl_change_percentage": 406991.47954,
-        "atl_date": "2015-10-20T00:00:00.000Z",
-        "roi": {
-            "times": 90.9339704784822,
-            "currency": "btc",
-            "percentage": 9093.397047848219
-        },
-        "last_updated": "2022-09-29T20:25:54.286Z"
     },
     {
         "id": "tether",
         "symbol": "usdt",
         "name": "Tether",
         "image": "https://assets.coingecko.com/coins/images/325/large/Tether-logo.png?1598003707",
-        "current_price": 4.95,
-        "market_cap": 336598890198,
-        "market_cap_rank": 3,
-        "fully_diluted_valuation": null,
-        "total_volume": 216446698766,
-        "high_24h": 5.05,
-        "low_24h": 4.92,
-        "price_change_24h": 0.00874522,
-        "price_change_percentage_24h": 0.17683,
-        "market_cap_change_24h": 909267710,
-        "market_cap_change_percentage_24h": 0.27087,
-        "circulating_supply": 67956206762.8914,
-        "total_supply": 67956206762.8914,
-        "max_supply": null,
-        "ath": 5.06,
-        "ath_change_percentage": -2.12515,
-        "ath_date": "2022-09-27T16:25:45.538Z",
-        "atl": 2.22,
-        "atl_change_percentage": 123.57448,
-        "atl_date": "2015-03-02T00:00:00.000Z",
-        "roi": null,
-        "last_updated": "2022-09-29T20:26:14.549Z"
+        "current_price": 4.95
     },
 ]

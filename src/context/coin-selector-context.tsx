@@ -1,13 +1,17 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { Coin } from "../utils/types";
 
-type CoinSelectorContextType = {
+export type CoinSelectorContextType = {
     selectedCoins: Coin[];
     toggleCoinSelection: (coin: Coin) => void;
     isCoinSelected: (coin: Coin) => boolean;
 }
 
-export const CoinSelectorContext = createContext<CoinSelectorContextType | null>(null);
+export const CoinSelectorContext = createContext<CoinSelectorContextType>({
+    selectedCoins: [],
+    toggleCoinSelection: () => {},
+    isCoinSelected: () => false
+});
 
 const STORAGE_KEY = "selectedCoins";
 
@@ -58,7 +62,7 @@ const CoinSelectionProvider = ({ children }: { children: React.ReactNode }) => {
 
     const isCoinSelected = (coin: Coin) => !!selectedCoins.find(_coin => _coin.id === coin.id);
 
-    return <CoinSelectorContext.Provider value={{selectedCoins, toggleCoinSelection, isCoinSelected}}>
+    return <CoinSelectorContext.Provider value={{ selectedCoins, toggleCoinSelection, isCoinSelected }}>
         {children}
     </CoinSelectorContext.Provider>
 }

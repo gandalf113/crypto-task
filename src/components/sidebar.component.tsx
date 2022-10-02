@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { CoinSelectorContext } from '../context/coin-selector-context';
+import { CoinSelectorContext, CoinSelectorContextType } from '../context/coin-selector-context';
 import { filterCoins } from '../utils/general-utils';
 import { Coin } from '../utils/types';
 
@@ -8,7 +8,7 @@ interface Props {
 }
 
 const Sidebar = ({ coins }: Props) => {
-    const { toggleCoinSelection, isCoinSelected } = useContext(CoinSelectorContext);
+    const { toggleCoinSelection, isCoinSelected } = useContext<CoinSelectorContextType>(CoinSelectorContext);
 
     const [query, setQuery] = useState("");
 
