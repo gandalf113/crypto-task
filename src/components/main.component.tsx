@@ -9,6 +9,7 @@ import CoinTag from './coin-tag.component';
 import useData from '../hooks/use-data';
 import SettingsModal from './modals/settings.component';
 import BrowseCoinsModal from './modals/browse-coins.component';
+import CurrentPriceSection from './price-section';
 
 /**
  * Main view in the application. It shows the chart and current
@@ -94,17 +95,8 @@ const MainView = () => {
             </div>
 
             {/* Current coin prices */}
-            <div className='text-zinc-300 my-3'>
-                {selectedCoins.length > 0 && <h1 className='text-zinc-50'>Current prices</h1>}
+            <CurrentPriceSection coinPrices={coinPrices} selectedCoins={selectedCoins} vsCurrency={vsCurrency} />
 
-                {selectedCoins.map((coin, index) => (
-                    coinPrices[coin.id] && <div key={coin.id} className='flex items-center gap-2'>
-                        <div className='w-2.5 h-2.5 rounded-full' style={{ backgroundColor: getDistinctColor(index) }} />
-
-                        <span>1 {coin.name} = {coinPrices[coin.id][vsCurrency]} {vsCurrency.toUpperCase()}</span>
-                    </div>
-                ))}
-            </div>
         </Fragment>
     )
 }
