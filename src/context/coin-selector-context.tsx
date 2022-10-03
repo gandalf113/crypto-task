@@ -32,9 +32,6 @@ const CoinSelectionProvider = ({ children }: { children: React.ReactNode }) => {
     useEffect(() => {
         const storageInBrowser = localStorage.getItem(STORAGE_KEY);
 
-        console.log("STORAGE")
-        console.log(storageInBrowser)
-
         if (storageInBrowser) {
             setSelectedCoins(JSON.parse(storageInBrowser));
         }
