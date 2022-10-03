@@ -51,7 +51,7 @@ const CoinSelectionProvider = ({ children }: { children: React.ReactNode }) => {
         } else {
             if (selectedCoins.length >= 5) {
                 // TODO: Implement toggle modal here somehow
-                return;
+                throw new Error('You can select up to 5 currencies');
             }
 
             // Add coin to selected

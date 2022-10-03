@@ -7,7 +7,6 @@ import { getDistinctColor } from '../utils/general-utils';
 import { CoinPrices } from '../utils/types';
 import CoinTag from './coin-tag.component';
 import useData from '../hooks/use-data';
-import useModal from '../hooks/use-modal';
 import SettingsModal from './modals/settings.component';
 import BrowseCoinsModal from './modals/browse-coins.component';
 
@@ -24,8 +23,8 @@ const MainView = () => {
     const [coinPrices, setCoinPrices] = useState<CoinPrices>({});
 
     // Modals
-    const [settingsModalIsOpen, toggleSettingsModal] = useModal();
-    const [browseCoinsModal, toggleBrowseCoinsModal] = useModal();
+    const [settingsModalIsOpen, toggleSettingsModal] = useState(false);
+    const [browseCoinsModal, toggleBrowseCoinsModal] = useState(false);
 
     /**
      * Get current coin prices for selected coins
