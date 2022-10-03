@@ -1,46 +1,91 @@
-# Getting Started with Create React App
+# Introduction
+A single-page application that allows user to select up to five currencies. The 24 hours coin price data is then plotted on a chart and displayed alongside current prices. The selected coins are stored persisently in local storage.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<img src="/preview.jpg">
 
-## Available Scripts
+# Tech Stack
+Originally I wrote this in React with plain Javascript, but decided to rewrite the whole in TypeScript last minute. For styling I used TailwindCSS, because I love the speed at which it lets me style my components. The chart is utilizing chart.js and react-chartjs-2 libraries. For E2E testing I used Cypress.
 
-In the project directory, you can run:
+# Components
+### MainView
+>/src/components/main.component.tsx
 
-### `npm start`
+Main view of the application. It shows the chart and current prices of user selected coins.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Sidebar
+>/src/components/sidebar.component.tsx
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Only shows on large screens. Sidebar displaying a list of cryptocurrencies that are fetched from the API. User can select or unselect the currencies by clicking on them. On smaller screens, it is replaced with BrowseCoinsModal.
 
-### `npm test`
+### Chart
+>/src/components/chart.component.tsx
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Line chart meant for showing 24 hour coin prices.
 
-### `npm run build`
+### CurrentPriceSection
+>/src/components/price-section.tsx
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Displays prices of currently selected coins.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Backdrop
+>/src/components/modals/backdrop.component.tsx
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Backdrop for the modal.
 
-### `npm run eject`
+### Modal
+>/src/components/modals/base-modal.component.tsx
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+A generic modal. Content should be passed as children.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### SettingsModal
+>/src/components/modals/settings.component.tsx
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+User modify two variables: decimation and vs_currency. They are then updated in the context
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### BrowseCoinsModal
+>/src/components/modals/browse-coins.component.tsx
 
-## Learn More
+This is basically a sidebar, but displayed in a form of a modal on smaller screens. Allows for searching and selecting cryptocurrencies
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### CoinLimitModal
+>/src/components/modals/coin-limit.component.tsx
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Pops up to inform the user that they can only select up to 5 currencies.
+
+# Context
+### CoinSelectorContext
+> /src/context/coin-selector-context.tsx
+
+Manages the state of selected coins.
+
+### SettingsContext
+> /src/context/settings-context.tsx
+
+Manages the global settings: vsCurrency (pln or usd) and chart decimation
+
+# Hooks
+### useAutoClose
+> /src/hooks/use-auto-close.tsx
+
+Triggers handleClose() function when screen width reaches a passed number in pixels. It's used to close the BrowseCoinsModal on bigger screens.
+
+### useData
+> /src/hooks/use-data.tsx
+
+Fetches 24 hour coin price data and prepares it for plotting on the chart.
+
+### useHttp
+> /src/hooks/use-http.tsx
+
+Fetches data from provided url and provides isLoading state.
+
+# Testing
+
+### E2E
+In order to run E2E test, run 'npx cypress open', go to E2E Testing, choose a browser envioroment and start the tests.
+
+There is only one E2E test located at /cypress/e2e/main-spec.cy.ts
+
+### Unit test
+Unit tests can be found at /src/__tests__/. I only wrote tests for util functions.
+
