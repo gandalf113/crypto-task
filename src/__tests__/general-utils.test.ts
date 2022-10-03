@@ -1,5 +1,12 @@
-import { filterCoins, getTimestamps } from "../utils/general-utils";
+import { decimateArray, filterCoins, getTimestamps } from "../utils/general-utils";
 import { SAMPLE_MARKET_DATA, SAMPLE_COINS } from "../utils/test-utils";
+
+test("test decimating an array", () => {
+    const sampleArray = [...Array(12)];
+    const decimatedArray = decimateArray(sampleArray, 1, 2);
+
+    expect(decimatedArray.length).toBe(6);
+});
 
 test("test that filtering currencies by name works", () => {
     const coins = filterCoins(SAMPLE_COINS, "bit")

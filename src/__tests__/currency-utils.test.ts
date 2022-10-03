@@ -38,14 +38,24 @@ describe("test getting the market chart data", () => {
     })
 
     test("test that the market chart is structured as expected", () => {
-        expect.assertions(4);
+        expect.assertions(2);
 
         return getCoinMarketChart('bitcoin', 'pln', 1).then(chart => {
             expect(chart[0]).toHaveProperty('timestamp');
             expect(chart[0]).toHaveProperty('price');
+        });
+    });
 
+
+    test("test that the market chart values are correct", () => {
+        expect.assertions(4);
+
+        return getCoinMarketChart('bitcoin', 'pln', 1).then(chart => {
             expect(chart[0]['timestamp']).toBe(1664692309195);
             expect(chart[0]['price']).toBe(6525.196502816177);
+
+            expect(chart[1]['timestamp']).toBe(1664692561826);
+            expect(chart[1]['price']).toBe(6517.240634755667);
         });
     })
 });
