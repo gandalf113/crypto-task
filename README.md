@@ -1,5 +1,11 @@
+## Crypto Task
+Click here to see the working demo hosted on Vercel.
+### [Live Demo](https://ulam-crypto-task.vercel.app/)
+
 # Introduction
 A single-page application that allows user to select up to five currencies. The 24 hours coin price data is then plotted on a chart and displayed alongside current prices. The selected coins are stored persisently in local storage.
+<br>
+
 
 <img src="/preview.jpg">
 
