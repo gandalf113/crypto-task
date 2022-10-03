@@ -10,7 +10,7 @@ A single-page application that allows user to select up to five currencies. The 
 <img src="/preview.jpg">
 
 # Tech Stack
-Originally I wrote this in React with plain Javascript, but decided to rewrite the whole in TypeScript last minute. For styling I used TailwindCSS, because I love the speed at which it lets me style my components. The chart is utilizing chart.js and react-chartjs-2 libraries. For E2E testing I used Cypress.
+Originally I wrote this in React with plain Javascript, but decided to rewrite the whole thing in TypeScript last minute. For styling I used TailwindCSS, because I love the speed at which it lets me style my components. The chart is utilizing chart.js and react-chartjs-2 libraries. For E2E testing I used Cypress.
 
 # Components
 ### MainView

@@ -3,10 +3,6 @@ import { Coin, MarketChartPoint } from "./types";
 /**
  * Decimates an array. Useful for optimizing
  * the data before plotting on the chart.
- * @param {Array} arr
- * @param {number} passes
- * @param {number} fidelity
- * @returns decimated array
  */
 export function decimateArray(arr: Array<unknown>, passes: number = 1, fidelity: number = 2): Array<unknown> {
     let tmpArr = arr.filter((_, index) => index % fidelity === 0);
