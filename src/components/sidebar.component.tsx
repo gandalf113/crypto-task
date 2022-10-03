@@ -52,7 +52,7 @@ const Sidebar = () => {
                 <div className='mt-4 px-4 pb-8 overflow-y-scroll h-full w-full'>
                     {isLoading ?
                         // If coins are being loaded, show some loading skeleton
-                        [...Array(10)].map((e, i) => <div className='p-2 my-2 h-10 w-full bg-zinc-900 opacity-25 animate-pulse rounded' />)
+                        [...Array(10)].map((e, i) => <div key={i} className='p-2 my-2 h-10 w-full bg-zinc-900 opacity-25 animate-pulse rounded' />)
                         :
                         // Once it loads, show the coins
                         filteredCoins.map(coin => (

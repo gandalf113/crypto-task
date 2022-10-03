@@ -21,12 +21,14 @@ export const getCoinMarketChart = async (coin_id: string, vs_currency: string, d
  * Gets prices in pln and usd for every selected coin
  */
 export const getCurrentCoinPrices = async (selectedCoins: Array<Coin>) => {
+    console.log("EXECUTING THE FUNCTION")
+    console.log("Selected coins: " + selectedCoins.length)
     const paramIds = selectedCoins.map(coin => coin.id).join(',');
 
     const res = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${paramIds}&vs_currencies=pln,usd`);
-    console.log("HERE: ")
-    console.log(res)
     const data = await res.json();
+
+    console.log("Returning")
 
     return data;
 }

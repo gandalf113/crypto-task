@@ -26,16 +26,16 @@ const MainView = () => {
     const [settingsModalIsOpen, toggleSettingsModal] = useState(false);
     const [browseCoinsModal, toggleBrowseCoinsModal] = useState(false);
 
+    // Data that will be displayed on the chart
+    const data = useData(selectedCoins, vsCurrency, decimation);
+
     /**
      * Get current coin prices for selected coins
      */
     useEffect(() => {
         getCurrentCoinPrices(selectedCoins).then(prices => setCoinPrices(prices));
-    }, [selectedCoins]);
+    }, [data, selectedCoins]);
 
-
-    // Data that will be displayed on the chart
-    const data = useData(selectedCoins, vsCurrency, decimation);
 
     const openSettingsModal = () => toggleSettingsModal(true);
     const closeSettingsModal = () => toggleSettingsModal(false);
@@ -85,6 +85,7 @@ const MainView = () => {
             <div className='flex flex-wrap items-center gap-2 mt-6 select-none'>
                 {selectedCoins.map((coin, index) => (
                     <CoinTag
+                        key={coin.id}
                         coin={coin}
                         color={getDistinctColor(index)}
                         toggleCoinSelection={toggleCoinSelection}

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { Coin } from "../utils/types";
 
 export type CoinSelectorContextType = {
@@ -13,7 +13,7 @@ export const CoinSelectorContext = createContext<CoinSelectorContextType>({
     isCoinSelected: () => false
 });
 
-const STORAGE_KEY = "selectedCoins";
+export const STORAGE_KEY = "selectedCoins";
 
 const CoinSelectionProvider = ({ children }: { children: React.ReactNode }) => {
     const [selectedCoins, setSelectedCoins] = useState<Coin[]>([]);
@@ -31,6 +31,9 @@ const CoinSelectionProvider = ({ children }: { children: React.ReactNode }) => {
      */
     useEffect(() => {
         const storageInBrowser = localStorage.getItem(STORAGE_KEY);
+
+        console.log("STORAGE")
+        console.log(storageInBrowser)
 
         if (storageInBrowser) {
             setSelectedCoins(JSON.parse(storageInBrowser));
