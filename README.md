@@ -1,6 +1,7 @@
 ## Crypto Task
 Click here to see the working demo hosted on Vercel.
 ### [Live Demo](https://ulam-crypto-task.vercel.app/)
+***IMPORTANT!*** The Coingecko API has a call rate limit, and it results in CORS error when it has been exceeded. If you encounter a Cors error, try refreshing the page or trying out the app on localhost.
 
 # Introduction
 A single-page application that allows user to select up to five currencies. The 24 hours coin price data is then plotted on a chart and displayed alongside current prices. The selected coins are stored persisently in local storage.
